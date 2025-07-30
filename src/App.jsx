@@ -5,7 +5,7 @@ import DashboardTabs from "./components/DashboardTabs";
 
 const App = () => {
   return (
-    <div className="bg-gray-200 min-h-screen">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(90deg, #E7E7E7 0%, #FFFFFF 100%)' }}>
       <div className="flex flex-col items-center pt-[9px] pb-[20px]">
         <div className="mt-4">
           <GreetingWeatherHotelCard />

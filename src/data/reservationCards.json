@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Arrivals",
+    "count": 10,
+    "icon": "../assets/Arrivals.svg"
+  },
+  {
+    "id": 2,
+    "name": "Departures",
+    "count": 9,
+    "icon": "../assets/Departures.svg"
+  },
+  {
+    "id": 3,
+    "name": "Stay Overs",
+    "count": 10,
+    "icon": "../assets/StayOvers.svg"
+  },
+  {
+    "id": 4,
+    "name": "Group",
+    "count": 2,
+    "icon": "../assets/Group.svg"
+  },
+  {
+    "id": 5,
+    "name": "Day Use",
+    "count": 2,
+    "icon": "../assets/Day Use.svg"
+  },
+  {
+    "id": 6,
+    "name": "Cancelled",
+    "count": 5,
+    "icon": "../assets/Cancelled.svg"
+  }
+] 
