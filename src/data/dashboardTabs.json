@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Reservations",
+    "icon": "../assets/Reservations.svg",
+    "isActive": false,
+    "description": "Manage hotel reservations and bookings"
+  },
+  {
+    "id": 2,
+    "name": "House Keeping",
+    "icon": "../assets/House Keeping.svg",
+    "isActive": false,
+    "description": "Manage housekeeping tasks and room status"
+  },
+  {
+    "id": 3,
+    "name": "Available Rooms",
+    "icon": "../assets/Available Rooms.svg",
+    "isActive": false,
+    "description": "View and manage available rooms"
+  },
+  {
+    "id": 4,
+    "name": "Projections",
+    "icon": "../assets/Projections.svg",
+    "isActive": true,
+    "description": "View financial projections and analytics"
+  }
+] 
