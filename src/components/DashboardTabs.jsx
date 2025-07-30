@@ -4,6 +4,10 @@ import reservationsIcon from "../assets/Reservations.svg";
 import houseKeepingIcon from "../assets/House Keeping.svg";
 import availableRoomsIcon from "../assets/Available Rooms.svg";
 import projectionsIcon from "../assets/Projections.svg";
+import ReservationsContent from "./ReservationsContent";
+import HouseKeepingContent from "./HouseKeepingContent";
+import AvailableRoomsContent from "./AvailableRoomsContent";
+import ProjectionsContent from "./ProjectionsContent";
 
 const DashboardTabs = () => {
   const [tabs, setTabs] = useState(dashboardTabsData);
@@ -27,6 +31,22 @@ const DashboardTabs = () => {
         return projectionsIcon;
       default:
         return reservationsIcon;
+    }
+  };
+
+  const ActiveTabContent = () => {
+    const activeTab = tabs.find(tab => tab.isActive);
+    switch (activeTab?.name) {
+      case "Reservations":
+        return <ReservationsContent />;
+      case "House Keeping":
+        return <HouseKeepingContent />;
+      case "Available Rooms":
+        return <AvailableRoomsContent />;
+      case "Projections":
+        return <ProjectionsContent />;
+      default:
+        return null;
     }
   };
 
@@ -61,6 +81,7 @@ const DashboardTabs = () => {
           </div>
         ))}
       </div>
+      <ActiveTabContent />
     </div>
   );
 };
