@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "name": "Vacant Dirty",
+      "count": 10,
+      "icon": "../assets/Vacant Dirty.svg"
+    },
+    {
+      "id": 2,
+      "name": "Vacant Clean",
+      "count": 9,
+      "icon": "../assets/Vacant Clean.svg"
+    },
+    {
+      "id": 3,
+      "name": "Occupied Dirty",
+      "count": 10,
+      "icon": "../assets/Ocuupied Dirty.svg"
+    },
+    {
+      "id": 4,
+      "name": "Occupied Clean",
+      "count": 2,
+      "icon": "../assets/Occupied Clean.svg"
+    },
+    {
+      "id": 5,
+      "name": "Out Of Order",
+      "count": 2,
+      "icon": "../assets/Out Of Order.svg"
+    },
+    {
+      "id": 6,
+      "name": "Out Of Inventory",
+      "count": 5,
+      "icon": "../assets/Out Of Inventory.svg"
+    }
+  ] 
