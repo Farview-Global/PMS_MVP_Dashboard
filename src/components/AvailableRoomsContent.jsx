@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   BarChart,
   Bar,
@@ -9,36 +9,36 @@ import {
   CartesianGrid,
   PieChart,
   Pie,
-  Cell
-} from 'recharts';
-import { ChevronLeft, ChevronRight, Calendar, ArrowRight } from 'lucide-react';
+  Cell,
+} from "recharts";
+import { ChevronLeft, ChevronRight, Calendar, ArrowRight } from "lucide-react";
 
 const barData = [
-  { name: 'NK', Occupied: 12, Vacant: 4 },
-  { name: 'SNK', Occupied: 10, Vacant: 6 },
-  { name: 'NQQ', Occupied: 14, Vacant: 5 },
-  { name: 'SNQQ', Occupied: 16, Vacant: 8 },
-  { name: 'SNKK', Occupied: 11, Vacant: 5 },
-  { name: 'HQQ', Occupied: 7, Vacant: 5 },
-  { name: 'NK', Occupied: 12, Vacant: 4 },
-  { name: 'SNK', Occupied: 10, Vacant: 6 },
+  { name: "NK", Occupied: 12, Vacant: 4 },
+  { name: "SNK", Occupied: 10, Vacant: 6 },
+  { name: "NQQ", Occupied: 14, Vacant: 5 },
+  { name: "SNQQ", Occupied: 16, Vacant: 8 },
+  { name: "SNKK", Occupied: 11, Vacant: 5 },
+  { name: "HQQ", Occupied: 7, Vacant: 5 },
+  { name: "NK", Occupied: 12, Vacant: 4 },
+  { name: "SNK", Occupied: 10, Vacant: 6 },
 ];
 
 const donutData = [
-  { name: 'Vacant Rooms', value: 24, color: '#7DD3FC' },
-  { name: 'Occupied Rooms', value: 28, color: '#1E3A8A' },
-  { name: 'Out of Order', value: 2, color: '#D1D5DB' },
-  { name: 'Out of Inventory', value: 3, color: '#9333EA' },
+  { name: "Vacant Rooms", value: 24, color: "#7DD3FC" },
+  { name: "Occupied Rooms", value: 28, color: "#1E3A8A" },
+  { name: "Out of Order", value: 2, color: "#D1D5DB" },
+  { name: "Out of Inventory", value: 3, color: "#9333EA" },
 ];
 
 const roomForecast = [
-  { percentage: 75, day: 'Mon', date: '31', month: 'Jul' },
-  { percentage: 60, day: 'Tue', date: '1', month: 'Aug' },
-  { percentage: 80, day: 'Wed', date: '2', month: 'Aug' },
-  { percentage: 70, day: 'Thu', date: '3', month: 'Aug' },
-  { percentage: 90, day: 'Fri', date: '4', month: 'Aug' },
-  { percentage: 60, day: 'Tue', date: '1', month: 'Aug' },
-  { percentage: 90, day: 'Fri', date: '4', month: 'Aug' },
+  { percentage: 75, day: "Mon", date: "31", month: "Jul" },
+  { percentage: 60, day: "Tue", date: "1", month: "Aug" },
+  { percentage: 80, day: "Wed", date: "2", month: "Aug" },
+  { percentage: 70, day: "Thu", date: "3", month: "Aug" },
+  { percentage: 90, day: "Fri", date: "4", month: "Aug" },
+  { percentage: 60, day: "Sat", date: "5", month: "Aug" },
+  { percentage: 90, day: "Sun", date: "6", month: "Aug" },
 ];
 
 const AvailableRoomsContent = () => {
@@ -46,7 +46,7 @@ const AvailableRoomsContent = () => {
   const totalAvailable = donutData.reduce((sum, d) => sum + d.value, 0);
 
   const handleCustomDateClick = () => {
-    console.log('Custom date clicked');
+    console.log("Custom date clicked");
   };
 
   return (
@@ -104,17 +104,23 @@ const AvailableRoomsContent = () => {
                 stackId="a"
                 fill="url(#occupiedGradient)"
                 radius={[4, 4, 0, 0]}
-                stroke='#000'
+                stroke="#000"
               />
               <Bar
                 dataKey="Vacant"
                 stackId="a"
                 fill="url(#vacantGradient)"
                 radius={[4, 4, 0, 0]}
-                stroke='#000'
+                stroke="#000"
               />
               <defs>
-                <linearGradient id="occupiedGradient" x1="0" y1="0" x2="0" y2="1">
+                <linearGradient
+                  id="occupiedGradient"
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
+                >
                   <stop offset="0%" stopColor="#005C84" stopOpacity={0.8} />
                   <stop offset="100%" stopColor="#4A2C82" stopOpacity={0.7} />
                 </linearGradient>
@@ -127,43 +133,69 @@ const AvailableRoomsContent = () => {
           </ResponsiveContainer>
         </div>
 
-        <div className="w-full md:w-1/3 bg-white rounded-md p-4 flex flex-col justify-between text-black">
-          <ResponsiveContainer width="100%" height={250}>
-            <PieChart>
-              <Pie
-                data={donutData}
-                cx="50%"
-                cy="50%"
-                innerRadius={60}
-                outerRadius={80}
-                paddingAngle={2}
-                dataKey="value"
-                labelLine={false}
-              >
-                {donutData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.color} />
-                ))}
-              </Pie>
-            </PieChart>
-          </ResponsiveContainer>
-          <div className="text-center -mt-32 font-bold text-lg">
-            <div>Total Rooms</div>
-            <div>{`${totalAvailable}/${totalRooms}`}</div>
-          </div>
-          <div className="mt-2">
-            {donutData.map((item, index) => (
-              <div key={index} className="flex justify-between text-sm mb-1">
-                <span className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></span>
-                  {item.name}
-                </span>
-                <span className="font-semibold">{item.value}</span>
+        <div
+          className="w-full md:w-[586px] bg-white rounded-lg border border-gray-200 p-[9.45px] flex flex-col justify-between text-black"
+          style={{ height: "337px" }}
+        >
+          {/* Pie Chart */}
+          <div
+            className="flex justify-between items-start w-full px-6 py-4"
+            style={{ height: "248px" }}
+          >
+            {/* Left: Donut */}
+            <div className="relative w-[200px] h-[200px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={donutData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    paddingAngle={2}
+                    dataKey="value"
+                    labelLine={false}
+                    startAngle={90}
+                    endAngle={-270}
+                  >
+                    {donutData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+
+              {/* Center Text */}
+              <div className="absolute inset-0 flex flex-col items-center justify-center text-sm font-semibold text-[#005C84]">
+                <span>Total Rooms</span>
+                <span>{`${totalAvailable}/${totalRooms}`}</span>
               </div>
-            ))}
+            </div>
+
+            {/* Right: Legends */}
+            <div className="flex flex-col justify-center text-sm text-gray-700 space-y-6 w-1/2">
+              {donutData.map((item, index) => (
+                <div key={index} className="flex justify-between items-center">
+                  <span className="flex items-center gap-2">
+                    <span
+                      className="w-3 h-3 rounded-full"
+                      style={{ backgroundColor: item.color }}
+                    ></span>
+                    {item.name}:
+                  </span>
+                  <span className="font-semibold">{item.value}</span>
+                </div>
+              ))}
+            </div>
           </div>
-          <button className="mt-4 border border-black text-black rounded-md py-1.5 flex justify-center items-center gap-2 hover:bg-black hover:text-white transition">
-            View All <ArrowRight size={16} />
+
+          {/* Button */}
+          <div className="col-span-6 flex justify-center mt-4">
+          <button className="w-[300px] px-6 py-6 rounded-lg text-lg font-semibold flex justify-between items-center border border-black hover:bg-purple-50 transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#4A2C82]/70 to-[#005C84]/80">
+            <span>View All</span>
+            <span className="text-xl">&#8594;</span>
           </button>
+        </div>
         </div>
       </div>
     </div>

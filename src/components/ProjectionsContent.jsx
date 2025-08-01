@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { Line } from "react-chartjs-2";
 import DatePicker from "react-datepicker";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import { ChevronLeft, ChevronRight, Calendar, ArrowRight } from "lucide-react";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { chartLabels, dummyData } from "../data/projectionsData";
@@ -78,6 +79,10 @@ const ProjectionsContent = () => {
     },
   };
 
+  const handleCustomDateClick = () => {
+    console.log("Custom date clicked");
+  };
+
   return (
     <div className="w-[1680px] h-[536px] bg-white border border-gray-200 rounded-md px-10 py-6 mt-6 mx-auto">
       {/* Header Section */}
@@ -98,30 +103,13 @@ const ProjectionsContent = () => {
           </div>
 
           {/* Date Picker */}
-          <div className="flex items-center space-x-2">
-            {/* 📅 Calendar Icon */}
-            {/* 📅 Calendar Icon (triggers popup) */}
-            <FaRegCalendarAlt
-              className="text-gray-600 text-xl cursor-pointer"
-              onClick={() => datePickerRef.current.setOpen(true)}
-            />
-
-            {/* 🏷️ Label inside styled box */}
-            <div className="border border-gray-300 rounded-md px-3 py-[6px] text-sm font-medium text-gray-800">
-              Custom Range
-            </div>
-
-            {/* 📅 Hidden DatePicker input (opens on icon click) */}
-            <DatePicker
-              ref={datePickerRef}
-              selectsRange
-              startDate={startDate}
-              endDate={endDate}
-              onChange={(update) => setDateRange(update)}
-              withPortal
-              className="hidden"
-            />
-          </div>
+          <button
+                    onClick={handleCustomDateClick}
+                    className="min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 mx-10 rounded-md hover:bg-gray-100 transition"
+                  >
+                    <Calendar size={18} />
+                    <span className="text-sm font-medium">Custom Range</span>
+                  </button>
         </div>
       </div>
 
