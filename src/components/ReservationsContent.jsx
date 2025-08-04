@@ -32,11 +32,15 @@ const ReservationsContent = () => {
       {reservationCardsData.map((card) => (
         <div
         key={card.id}
-        className="border border-black rounded-lg shadow-md p-4 flex flex-col items-center justify-center h-[310px] w-[240px] transform transition-transform duration-300 hover:scale-y-110 hover:bg-gradient-to-t from-[#4A2C82]/70 to-[#005C84]/80"
+        className="group border border-black rounded-lg shadow-md p-4 flex flex-col items-center justify-center h-[310px] w-[240px] transform transition-transform duration-300 hover:scale-y-110 hover:bg-gradient-to-t from-[#4A2C82]/70 to-[#005C84]/80"
       >
-          <img src={getIconSrc(card.icon)} alt={card.name} className="w-30 h-30 mb-2 font-thi" />
-          <p className="text-lg font-semibold text-gray-800">{card.name}</p>
-          <p className="text-3xl font-bold text-gray-900">{card.count}</p>
+          <img 
+            src={getIconSrc(card.icon)} 
+            alt={card.name} 
+            className="w-30 h-30 mb-2 font-thin transition-all duration-300 group-hover:brightness-0 group-hover:invert" 
+          />
+          <p className="text-lg font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">{card.name}</p>
+          <p className="text-3xl font-bold text-gray-900 group-hover:text-white transition-colors duration-300">{card.count}</p>
         </div>
       ))}
         <div className="col-span-6 flex justify-center mt-4">

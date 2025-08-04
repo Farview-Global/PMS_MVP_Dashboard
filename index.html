@@ -5,6 +5,15 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React</title>
+    <!-- Preload Segoe UI Variable font for better performance -->
+    <style>
+      /* Ensure Segoe UI Variable is available system-wide */
+      @font-face {
+        font-family: "Segoe UI Variable";
+        src: local("Segoe UI Variable"), local("SegoeUIVariable");
+        font-display: swap;
+      }
+    </style>
   </head>
   <body>
     <div id="root"></div>

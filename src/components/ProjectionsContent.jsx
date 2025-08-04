@@ -71,7 +71,8 @@ const ProjectionsContent = () => {
   };
 
   const options = {
-  responsive: true,
+  responsive: false,
+  maintainAspectRatio: false,
   plugins: {
     legend: { display: false },
     tooltip: {
@@ -81,6 +82,12 @@ const ProjectionsContent = () => {
           const value = context.raw;
           return key === "occupancyPercentage" ? `${value}%` : `$${value}`;
         },
+      },
+      titleFont: {
+        family: "Segoe UI Variable, Segoe UI " ,
+      },
+      bodyFont: {
+        family: "Segoe UI Variable, Segoe UI",
       },
     },
   },
@@ -93,15 +100,17 @@ const ProjectionsContent = () => {
             ? `${value}%`
             : `$${value}`,
         font: {
-          size: 20, // ← Increase Y-axis font size
+          size: 20,
+          family: "Segoe UI Variable, Segoe UI, system-ui, sans-serif",
         },
-        padding: 20, // ← adds space between label and axis line
+        padding: 20,
       },
     },
     x: {
       ticks: {
         font: {
-          size: 16, // ← Increase X-axis font size
+          size: 16,
+          family: "Segoe UI Variable, Segoe UI, system-ui, sans-serif",
         },
       },
     },
@@ -147,8 +156,8 @@ const ProjectionsContent = () => {
       <div className="p-[10px]">
         <div className="w-[1638px] h-[412px] flex items-start justify-between">
           {/* Chart Area */}
-          <div className="w-[950px] h-[412px] flex flex-col items-start">
-            <Line data={data} options={options} />
+          <div className="w-[1800px] h-[412px] flex flex-col items-start">
+            <Line data={data} options={options} width={1100} height={412} />
           </div>
 
           {/* Legend Buttons */}

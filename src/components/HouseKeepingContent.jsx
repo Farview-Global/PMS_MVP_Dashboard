@@ -34,11 +34,15 @@ const HouseKeepingContent = () => {
         {roomStatusData.map((room) => (
           <div
             key={room.id}
-            className="border border-black rounded-lg shadow-md p-4 flex flex-col items-center justify-center h-[310px] w-[240px] transform transition-transform duration-300 hover:scale-y-110 hover:bg-gradient-to-t from-[#4A2C82]/70 to-[#005C84]/80"
+            className="group border border-black rounded-lg shadow-md p-4 flex flex-col items-center justify-center h-[310px] w-[240px] transform transition-transform duration-300 hover:scale-y-110 hover:bg-gradient-to-t from-[#4A2C82]/70 to-[#005C84]/80"
           >
-            <img src={getIconSrc(room.icon)} alt={room.name} className="w-30 h-30 mb-2" />
-            <p className="text-lg font-semibold text-gray-800">{room.name}</p>
-            <p className="text-3xl font-bold text-gray-900">{room.count}</p>
+            <img 
+              src={getIconSrc(room.icon)} 
+              alt={room.name} 
+              className="w-30 h-30 mb-2 transition-all duration-300 group-hover:brightness-0 group-hover:invert" 
+            />
+            <p className="text-lg font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">{room.name}</p>
+            <p className="text-3xl font-bold text-gray-900 group-hover:text-white transition-colors duration-300">{room.count}</p>
           </div>
         ))}
       </div>

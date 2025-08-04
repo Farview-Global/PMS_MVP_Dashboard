@@ -33,12 +33,12 @@ const donutData = [
 
 const roomForecast = [
   { percentage: 75, day: "Mon", date: "31", month: "Jul" },
-  { percentage: 60, day: "Tue", date: "1", month: "Aug" },
-  { percentage: 80, day: "Wed", date: "2", month: "Aug" },
-  { percentage: 70, day: "Thu", date: "3", month: "Aug" },
-  { percentage: 90, day: "Fri", date: "4", month: "Aug" },
-  { percentage: 60, day: "Sat", date: "5", month: "Aug" },
-  { percentage: 90, day: "Sun", date: "6", month: "Aug" },
+  { percentage: 60, day: "Tue", date: "01", month: "Aug" },
+  { percentage: 80, day: "Wed", date: "02", month: "Aug" },
+  { percentage: 70, day: "Thu", date: "03", month: "Aug" },
+  { percentage: 90, day: "Fri", date: "04", month: "Aug" },
+  { percentage: 60, day: "Sat", date: "05", month: "Aug" },
+  { percentage: 90, day: "Sun", date: "06", month: "Aug" },
 ];
 
 const AvailableRoomsContent = () => {
@@ -96,9 +96,20 @@ const AvailableRoomsContent = () => {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={barData} barSize={40} margin={{ top: 20, bottom: 20 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" stroke="#000" />
-              <YAxis stroke="#000" />
-              <Tooltip />
+              <XAxis 
+                dataKey="name" 
+                stroke="#000" 
+                style={{ fontFamily: "Segoe UI Variable, Segoe UI, system-ui, sans-serif" }}
+              />
+              <YAxis 
+                stroke="#000" 
+                style={{ fontFamily: "Segoe UI Variable, Segoe UI, system-ui, sans-serif" }}
+              />
+              <Tooltip 
+                contentStyle={{ 
+                  fontFamily: "Segoe UI Variable, Segoe UI, system-ui, sans-serif" 
+                }}
+              />
               <Bar
                 dataKey="Occupied"
                 stackId="a"
@@ -190,7 +201,7 @@ const AvailableRoomsContent = () => {
           </div>
 
           {/* Button */}
-          <div className="col-span-6 flex justify-center mt-4">
+          <div className="col-span-6 flex justify-center mt-2">
           <button className="w-[300px] px-6 py-6 rounded-lg text-lg font-semibold flex justify-between items-center border border-black hover:bg-purple-50 transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#4A2C82]/70 to-[#005C84]/80">
             <span>View All</span>
             <span className="text-xl">&#8594;</span>
