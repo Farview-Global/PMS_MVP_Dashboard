@@ -81,7 +81,7 @@ const AvailableRoomsContent = () => {
 
         <button
           onClick={handleCustomDateClick}
-          className="min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 mx-10 rounded-md hover:bg-gray-100 transition"
+          className="min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 mx-10 rounded-md hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:text-white hover:border-white transition-all duration-300"
         >
           <Calendar size={18} />
           <span className="text-sm font-medium">Custom Date</span>
@@ -202,7 +202,7 @@ const AvailableRoomsContent = () => {
 
           {/* Button */}
           <div className="col-span-6 flex justify-center mt-2">
-          <button className="w-[300px] px-6 py-6 rounded-lg text-lg font-semibold flex justify-between items-center border border-black hover:bg-purple-50 transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#4A2C82]/70 to-[#005C84]/80">
+          <button className="w-[300px] px-6 py-6 rounded-lg text-lg font-semibold flex justify-between items-center border border-black hover:bg-purple-50 transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:border-white hover:text-white">
             <span>View All</span>
             <span className="text-xl">&#8594;</span>
           </button>

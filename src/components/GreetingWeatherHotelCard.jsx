@@ -19,8 +19,8 @@ const GreetingWeatherHotelCard = () => {
       </div>
 
       {/* Right Section - Hotel Card with Gradient Border */}
-      <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-500 to-purple-600 rounded-[10px] p-[1px]">
+      <div className="relative group cursor-pointer">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-500 to-purple-600 rounded-[10px] p-[1px] group-hover:from-white group-hover:to-white transition-all duration-300">
           <div className="bg-white rounded-[9px] h-full w-full"></div>
         </div>
         <div className="relative flex items-center gap-3 px-4 py-2 rounded-[10px]">

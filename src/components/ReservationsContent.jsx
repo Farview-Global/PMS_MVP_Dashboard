@@ -32,7 +32,7 @@ const ReservationsContent = () => {
       {reservationCardsData.map((card) => (
         <div
         key={card.id}
-        className="group border border-black rounded-lg shadow-md p-4 flex flex-col items-center justify-center h-[310px] w-[240px] transform transition-transform duration-300 hover:scale-y-110 hover:bg-gradient-to-t from-[#4A2C82]/70 to-[#005C84]/80"
+        className="group border border-black rounded-lg shadow-md p-4 flex flex-col items-center justify-center h-[310px] w-[240px] transform transition-transform duration-300 hover:scale-y-110 hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:border-white"
       >
           <img 
             src={getIconSrc(card.icon)} 
@@ -44,7 +44,7 @@ const ReservationsContent = () => {
         </div>
       ))}
         <div className="col-span-6 flex justify-center mt-4">
-          <button className="w-[300px] px-6 py-6 rounded-lg text-lg font-semibold flex justify-between items-center border border-black hover:bg-purple-50 transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#4A2C82]/70 to-[#005C84]/80">
+          <button className="w-[300px] px-6 py-6 rounded-lg text-lg font-semibold flex justify-between items-center border border-black hover:bg-purple-50 transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:border-white hover:text-white">
             <span>View All</span>
             <span className="text-xl">&#8594;</span>
           </button>

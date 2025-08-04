@@ -1,4 +1,7 @@
 import React from "react";
+import findIcon from '../assets/find.svg';
+import reserveIcon from '../assets/reserve.svg';
+import walkinIcon from '../assets/walkin.svg';
 
 const Welcome = () => {
   return (
@@ -19,7 +22,7 @@ const Welcome = () => {
       <div className="flex items-center w-[620px] h-[136px] rounded-[10px] border border-black p-4">
         {/* QUICK LINKS Label */}
         <div className="transform -rotate-90 mr-4">
-          <span className="bg-blue-600 bg-clip-text text-transparent font-bold text-sm">
+          <span className="text-blue-600 font-bold text-lg">
             QUICK LINKS
           </span>
         </div>
@@ -28,24 +31,24 @@ const Welcome = () => {
         <div className="flex space-x-4 flex-1">
           {/* Find a Guest Card */}
           <div className="flex flex-col items-center bg-white rounded-lg shadow-sm p-4 flex-1">
-            <div className="w-14 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-2">
-                1
+            <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                <img src={findIcon} alt="Find" className="w-6 h-6" />
             </div>
             <span className="text-gray-600 text-sm font-medium">Find a Guest</span>
           </div>
 
           {/* New Reservation Card */}
           <div className="flex flex-col items-center bg-white rounded-lg shadow-sm p-4 flex-1">
-            <div className="w-14 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-2">
-                2
+            <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                <img src={reserveIcon} alt="Reserve" className="w-6 h-6" />
             </div>
             <span className="text-gray-600 text-sm font-medium">New Reservation</span>
           </div>
 
           {/* Walk-In Card */}
           <div className="flex flex-col items-center bg-white rounded-lg shadow-sm p-4 flex-1">
-            <div className="w-14 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-2">
-                3
+            <div className="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                <img src={walkinIcon} alt="Walk-in" className="w-6 h-6" />
             </div>
             <span className="text-gray-600 text-sm font-medium">Walk-In</span>
           </div>

@@ -58,7 +58,7 @@ const DashboardTabs = () => {
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
             className={`group flex items-center space-x-4 rounded-lg px-8 py-6 cursor-pointer transition-all duration-200 ${tab.isActive
-                ? "bg-gradient-to-t from-[#4A2C82]/80 to-[#005C84]/80 w-[420px] h-[110px]" // Increased size when active
+                ? "bg-gradient-to-t from-[#3A1F6B]/80 to-[#005C84]/80 w-[420px] h-[110px]" // Increased size when active
                 : "bg-white border border-black hover:shadow-sm w-[400px] h-[100px]" // Original size when inactive
             }`}
           >
