@@ -59,7 +59,7 @@ const AvailableRoomsContent = () => {
         {roomForecast.map((item, index) => (
           <div
             key={index}
-            className="min-w-[180px] h-[80px] border border-gray-300 rounded-md flex items-center justify-between px-4 shadow-sm bg-white"
+            className="min-w-[180px] h-[80px] border border-gray-300 rounded-md flex items-center justify-between px-4 shadow-xl bg-white"
           >
             <div className="basis-[30%] flex items-center justify-center">
               <div className="w-[80px] h-[50px] bg-[#005C84] text-white font-bold text-lg rounded-md flex items-center justify-center">
@@ -89,12 +89,12 @@ const AvailableRoomsContent = () => {
       </div>
 
       {/* Charts Section */}
-      <div className="flex flex-col md:flex-row w-full p-4 gap-4 bg-white shadow rounded-md">
+      <div className="flex flex-col md:flex-row w-full p-4 gap-4 bg-white shadow-md rounded-md">
         {/* Bar Chart */}
         <div className="w-full md:w-2/3 p-4">
           <h2 className="text-black text-xl font-semibold mb-2">24 Rooms</h2>
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={barData} margin={{ top: 20, bottom: 20 }}>
+            <BarChart data={barData} barSize={40} margin={{ top: 20, bottom: 20 }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" stroke="#000" />
               <YAxis stroke="#000" />
@@ -134,7 +134,7 @@ const AvailableRoomsContent = () => {
         </div>
 
         <div
-          className="w-full md:w-[586px] bg-white rounded-lg border border-gray-200 p-[9.45px] flex flex-col justify-between text-black"
+          className="w-full md:w-[586px] bg-white rounded-lg border border-gray-200 p-[9.45px] flex flex-col justify-between text-black shadow-md"
           style={{ height: "337px" }}
         >
           {/* Pie Chart */}

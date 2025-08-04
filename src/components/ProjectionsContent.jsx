@@ -16,7 +16,14 @@ import {
   Legend,
 } from "chart.js";
 
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement, Tooltip, Legend);
+ChartJS.register(
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  Tooltip,
+  Legend
+);
 
 const ProjectionsContent = () => {
   const [selectedMetric, setSelectedMetric] = useState(null);
@@ -48,55 +55,78 @@ const ProjectionsContent = () => {
       fill: false,
       tension: 0.4,
       pointRadius: selectedMetric === key || selectedMetric === null ? 5 : 3,
-      pointHoverRadius: selectedMetric === key || selectedMetric === null ? 7 : 3,
+      pointHoverRadius:
+        selectedMetric === key || selectedMetric === null ? 7 : 3,
       borderWidth: selectedMetric === key || selectedMetric === null ? 3 : 1,
-      borderDash: selectedMetric === key || selectedMetric === null ? [] : [5, 5],
+      borderDash: [], // Always solid lines
+  borderColor:
+    selectedMetric === key || selectedMetric === null
+      ? chartColors[key]
+      : "rgba(0, 0, 0, 0.3)", // dim others
+  backgroundColor:
+    selectedMetric === key || selectedMetric === null
+      ? chartColors[key]
+      : "rgba(0, 0, 0, 0.1)", // dim fill
     })),
   };
 
   const options = {
-    responsive: true,
-    plugins: {
-      legend: { display: false }, // We use custom legend buttons
-      tooltip: {
-        callbacks: {
-          label: (context) => {
-            const key = Object.keys(dummyData)[context.datasetIndex];
-            const value = context.raw;
-            return key === "occupancyPercentage" ? `${value}%` : `$${value}`;
-          },
+  responsive: true,
+  plugins: {
+    legend: { display: false },
+    tooltip: {
+      callbacks: {
+        label: (context) => {
+          const key = Object.keys(dummyData)[context.datasetIndex];
+          const value = context.raw;
+          return key === "occupancyPercentage" ? `${value}%` : `$${value}`;
         },
       },
     },
-    scales: {
-      y: {
-        beginAtZero: true,
-        ticks: {
-          callback: (value) =>
-            selectedMetric === "occupancyPercentage" ? `${value}%` : `$${value}`,
+  },
+  scales: {
+    y: {
+      beginAtZero: true,
+      ticks: {
+        callback: (value) =>
+          selectedMetric === "occupancyPercentage"
+            ? `${value}%`
+            : `$${value}`,
+        font: {
+          size: 20, // ← Increase Y-axis font size
+        },
+        padding: 20, // ← adds space between label and axis line
+      },
+    },
+    x: {
+      ticks: {
+        font: {
+          size: 16, // ← Increase X-axis font size
         },
       },
     },
-  };
+  },
+};
+
 
   const handleCustomDateClick = () => {
     console.log("Custom date clicked");
   };
 
   return (
-    <div className="w-[1680px] h-[536px] bg-white border border-gray-200 rounded-md px-10 py-6 mt-6 mx-auto">
+    <div className="w-[1680px] h-[536px] bg-white border border-gray-200 rounded-md px-10 py-6 mt-6 mx-auto shadow-xl">
       {/* Header Section */}
       <div className="flex justify-between items-center px-10 py-[5px]">
-        <div className="w-[1578px] h-[72px] flex justify-between items-center">
-          <div className="text-2xl font-bold text-gray-800">
+        <div className="w-[1400px] h-[72px] flex justify-between items-center">
+          <div className="text-4xl font-bold text-gray-800">
             Total Revenue{" "}
             {selectedMetric && selectedMetric !== "occupancyPercentage" && (
-              <span className="text-green-600 text-2xl ml-2 font-semibold">
+              <span className="text-green-600 text-5xl ml-2 font-semibold">
                 ${dummyData[selectedMetric][6].toFixed(2)}
               </span>
             )}
             {selectedMetric === "occupancyPercentage" && (
-              <span className="text-blue-600 text-2xl ml-2 font-semibold">
+              <span className="text-blue-600 text-5xl ml-2 font-semibold">
                 {dummyData[selectedMetric][6].toFixed(2)}%
               </span>
             )}
@@ -104,12 +134,12 @@ const ProjectionsContent = () => {
 
           {/* Date Picker */}
           <button
-                    onClick={handleCustomDateClick}
-                    className="min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 mx-10 rounded-md hover:bg-gray-100 transition"
-                  >
-                    <Calendar size={18} />
-                    <span className="text-sm font-medium">Custom Range</span>
-                  </button>
+            onClick={handleCustomDateClick}
+            className="min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 mx-10 rounded-md hover:bg-gray-100 transition"
+          >
+            <Calendar size={18} />
+            <span className="text-sm font-medium">Custom Range</span>
+          </button>
         </div>
       </div>
 
@@ -123,7 +153,7 @@ const ProjectionsContent = () => {
 
           {/* Legend Buttons */}
           <div className="py-[16.8px] flex-shrink-0">
-            <div className="w-[498px] h-[282px] flex flex-col items-start gap-y-5">
+            <div className="w-[498px] h-[282px] flex flex-col items-start gap-y-8 pt-8">
               {Object.keys(metricLabels).map((key) => (
                 <div
                   key={key}
@@ -145,7 +175,7 @@ const ProjectionsContent = () => {
                   />
                   {/* Label Text */}
                   <span
-                    className={`text-sm font-semibold transition ${
+                    className={`text-2xl font-semibold transition ${
                       selectedMetric === key || selectedMetric === null
                         ? "text-gray-800"
                         : "text-gray-400"

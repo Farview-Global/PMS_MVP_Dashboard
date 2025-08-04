@@ -2,9 +2,9 @@ import React from "react";
 
 const Welcome = () => {
   return (
-    <div className="flex justify-between items-center w-[1678px] h-[136px]">
+    <div className="flex justify-between items-center w-[1678px] h-[136px] ">
       {/* Left Section: Welcome to Navi Dashboard */}
-      <div className="flex justify-between items-center w-[506px] h-[125px] bg-white rounded-[6px] shadow-sm p-6">
+      <div className="flex justify-between items-center w-[506px] h-[125px] bg-white rounded-[6px] shadow-lg p-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
             Welcome to Navi Dashboard

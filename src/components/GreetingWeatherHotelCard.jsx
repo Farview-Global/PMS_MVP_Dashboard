@@ -3,7 +3,7 @@ import hotelIcon from '../assets/hotel.svg';
 
 const GreetingWeatherHotelCard = () => {
   return (
-    <div className="flex justify-between items-center w-[1678px] h-[96px] bg-white rounded-[10px] p-[10px] shadow-sm">
+    <div className="flex justify-between items-center w-[1678px] h-[96px] bg-white rounded-[10px] p-[10px] shadow-lg">
       {/* Left Section - Greeting and Weather */}
       <div className="flex items-center space-x-4">
         {/* Sun Icon */}
