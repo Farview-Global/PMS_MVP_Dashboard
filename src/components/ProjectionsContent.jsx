@@ -157,7 +157,7 @@ const ProjectionsContent = () => {
         <div className="w-[1638px] h-[412px] flex items-start justify-between">
           {/* Chart Area */}
           <div className="w-[1800px] h-[412px] flex flex-col items-start">
-            <Line data={data} options={options} width={1100} height={412} />
+            <Line data={data} options={options} width={1050} height={375} />
           </div>
 
           {/* Legend Buttons */}
