@@ -5,17 +5,14 @@ import DashboardTabs from "./components/DashboardTabs";
 
 const App = () => {
   return (
-    <div className="min-h-screen" style={{ background: 'linear-gradient(90deg, #E7E7E7 0%, #FFFFFF 100%)' }}>
-      <div className="flex flex-col items-center pt-[9px] pb-[20px]">
-        <div className="mt-4">
-          <GreetingWeatherHotelCard />
-        </div>
-        <div className="mt-[24px]">
-          <Welcome />
-        </div>
-        <div className="mt-6">
-          <DashboardTabs />
-        </div>
+    <div
+      className="min-h-screen w-full flex flex-col items-center p-2 lg:p-4"
+      style={{ background: 'linear-gradient(90deg, #E7E7E7 0%, #FFFFFF 100%)' }}
+    >
+      <div className="flex flex-col items-center w-full max-w-7xl mx-auto gap-y-4 overflow-hidden">
+        <GreetingWeatherHotelCard />
+        <Welcome />
+        <DashboardTabs />
       </div>
     </div>
   );
