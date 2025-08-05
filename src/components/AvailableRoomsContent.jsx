@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BarChart,
   Bar,
@@ -12,6 +12,7 @@ import {
   Cell,
 } from "recharts";
 import { ChevronLeft, ChevronRight, Calendar, ArrowRight } from "lucide-react";
+import AdvancedCalendar from "./AdvancedCalendar";
 
 const barData = [
   { name: "NK", Occupied: 12, Vacant: 4 },
@@ -44,9 +45,10 @@ const roomForecast = [
 const AvailableRoomsContent = () => {
   const totalRooms = 80;
   const totalAvailable = donutData.reduce((sum, d) => sum + d.value, 0);
+  const [showCalendar, setShowCalendar] = useState(false);
 
   const handleCustomDateClick = () => {
-    console.log("Custom date clicked");
+    setShowCalendar((prev) => !prev);
   };
 
   return (
@@ -79,13 +81,21 @@ const AvailableRoomsContent = () => {
           <ChevronRight size={24} />
         </button>
 
-        <button
-          onClick={handleCustomDateClick}
-          className="min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 mx-10 rounded-md hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:text-white hover:border-white transition-all duration-300"
-        >
-          <Calendar size={18} />
-          <span className="text-sm font-medium">Custom Date</span>
-        </button>
+        <div className="relative inline-block">
+          <button
+            onClick={handleCustomDateClick}
+            className="min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 mx-10 rounded-md hover:bg-gray-100 transition"
+          >
+            <Calendar size={18} />
+            <span className="text-sm font-medium">Custom Range</span>
+          </button>
+          {/* Conditionally render calendar */}
+          {showCalendar && (
+            <div className="absolute top-full left-0 mt-2 z-50">
+              <AdvancedCalendar onClose={() => setShowCalendar(false)} />
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Charts Section */}
@@ -94,20 +104,31 @@ const AvailableRoomsContent = () => {
         <div className="w-full md:w-2/3 p-4">
           <h2 className="text-black text-xl font-semibold mb-2">24 Rooms</h2>
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={barData} barSize={40} margin={{ top: 20, bottom: 20 }}>
+            <BarChart
+              data={barData}
+              barSize={40}
+              margin={{ top: 20, bottom: 20 }}
+            >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis 
-                dataKey="name" 
-                stroke="#000" 
-                style={{ fontFamily: "Segoe UI Variable, Segoe UI, system-ui, sans-serif" }}
+              <XAxis
+                dataKey="name"
+                stroke="#000"
+                style={{
+                  fontFamily:
+                    "Segoe UI Variable, Segoe UI, system-ui, sans-serif",
+                }}
               />
-              <YAxis 
-                stroke="#000" 
-                style={{ fontFamily: "Segoe UI Variable, Segoe UI, system-ui, sans-serif" }}
+              <YAxis
+                stroke="#000"
+                style={{
+                  fontFamily:
+                    "Segoe UI Variable, Segoe UI, system-ui, sans-serif",
+                }}
               />
-              <Tooltip 
-                contentStyle={{ 
-                  fontFamily: "Segoe UI Variable, Segoe UI, system-ui, sans-serif" 
+              <Tooltip
+                contentStyle={{
+                  fontFamily:
+                    "Segoe UI Variable, Segoe UI, system-ui, sans-serif",
                 }}
               />
               <Bar
@@ -202,11 +223,11 @@ const AvailableRoomsContent = () => {
 
           {/* Button */}
           <div className="col-span-6 flex justify-center mt-2">
-          <button className="w-[300px] px-6 py-6 rounded-lg text-lg font-semibold flex justify-between items-center border border-black hover:bg-purple-50 transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:border-white hover:text-white">
-            <span>View All</span>
-            <span className="text-xl">&#8594;</span>
-          </button>
-        </div>
+            <button className="w-[300px] px-6 py-6 rounded-lg text-lg font-semibold flex justify-between items-center border border-black hover:bg-purple-50 transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:border-white hover:text-white">
+              <span>View All</span>
+              <span className="text-xl">&#8594;</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Calendar, ArrowRight } from "lucide-react";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { chartLabels, dummyData } from "../data/projectionsData";
+import WeekCalendar from "./WeekCalendar";
 import {
   Chart as ChartJS,
   LineElement,
@@ -30,6 +31,11 @@ const ProjectionsContent = () => {
   const [dateRange, setDateRange] = useState([new Date(), new Date()]);
   const [startDate, endDate] = dateRange;
   const datePickerRef = useRef(null);
+  const [showCalendar, setShowCalendar] = useState(false);
+
+  const handleCustomDateClick = () => {
+    setShowCalendar((prev) => !prev);
+  };
 
   const chartColors = {
     averageDailyRate: "#00b894",
@@ -118,9 +124,9 @@ const ProjectionsContent = () => {
 };
 
 
-  const handleCustomDateClick = () => {
-    console.log("Custom date clicked");
-  };
+  // const handleCustomDateClick = () => {
+  //   console.log("Custom date clicked");
+  // };
 
   return (
     <div className="w-[1680px] h-[536px] bg-white border border-gray-200 rounded-md px-10 py-6 mt-6 mx-auto shadow-xl">
@@ -142,13 +148,21 @@ const ProjectionsContent = () => {
           </div>
 
           {/* Date Picker */}
-          <button
-            onClick={handleCustomDateClick}
-            className="min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 mx-10 rounded-md hover:bg-gray-100 transition"
-          >
-            <Calendar size={18} />
-            <span className="text-sm font-medium">Custom Range</span>
-          </button>
+          <div className="relative inline-block">
+            <button
+              onClick={handleCustomDateClick}
+              className="min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 mx-10 rounded-md hover:bg-gray-100 transition"
+            >
+              <Calendar size={18} />
+              <span className="text-sm font-medium">Custom Range</span>
+            </button>
+            {/* Conditionally render calendar */}
+            {showCalendar && (
+              <div className="absolute top-full left-0 mt-2 z-50">
+                <WeekCalendar onClose={() => setShowCalendar(false)} />
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
