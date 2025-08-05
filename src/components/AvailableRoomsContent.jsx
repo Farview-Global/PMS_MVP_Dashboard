@@ -80,26 +80,28 @@ const AvailableRoomsContent = () => {
         <button className="text-gray-600 hover:text-black">
           <ChevronRight size={24} />
         </button>
-
-        <div className="relative inline-block">
-          <button
-            onClick={handleCustomDateClick}
-            className="min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 mx-10 rounded-md hover:bg-gray-100 transition"
-          >
-            <Calendar size={18} />
-            <span className="text-sm font-medium">Custom Range</span>
-          </button>
-          {/* Conditionally render calendar */}
-          {showCalendar && (
-            <div className="absolute top-full left-0 mt-2 z-50">
-              <AdvancedCalendar onClose={() => setShowCalendar(false)} />
-            </div>
-          )}
-        </div>
       </div>
 
       {/* Charts Section */}
-      <div className="flex flex-col md:flex-row w-full p-4 gap-4 bg-white shadow-md rounded-md">
+      <div className="flex flex-col md:flex-row w-full p-4 gap-4 bg-white shadow-md rounded-md relative z-10">
+        {/* Custom Range Button - positioned to appear in same place as before */}
+        <div className="absolute -top-20 right-10 z-20">
+          <div className="relative inline-block">
+            <button
+              onClick={handleCustomDateClick}
+              className="min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 mx-10 rounded-md hover:bg-gray-100 transition"
+            >
+              <Calendar size={18} />
+              <span className="text-sm font-medium">Custom Range</span>
+            </button>
+            {/* Conditionally render calendar */}
+            {showCalendar && (
+              <div className="absolute top-full right-0 mt-2 z-[9999] bg-white rounded-lg shadow-2xl border">
+                <AdvancedCalendar onClose={() => setShowCalendar(false)} />
+              </div>
+            )}
+          </div>
+        </div>
         {/* Bar Chart */}
         <div className="w-full md:w-2/3 p-4">
           <h2 className="text-black text-xl font-semibold mb-2">24 Rooms</h2>
