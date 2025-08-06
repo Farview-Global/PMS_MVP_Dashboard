@@ -29,27 +29,33 @@ const HouseKeepingContent = () => {
   };
 
   return (
-    <div className="mt-2 p-4">
+    <div className="mt-4 lg:mt-6 p-4">
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         {roomStatusData.map((room) => (
           <div
             key={room.id}
-            className="group border border-black rounded-lg shadow-md p-4 flex flex-col items-center justify-center h-auto w-full transform transition-transform duration-300 hover:scale-y-110 hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:border-white"
+            className="group flex flex-col items-center gap-3 py-14 px-10 rounded-[10px] border border-black shadow-md w-full transform transition-transform duration-300 hover:scale-y-110 hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:border-white"
           >
             <img 
               src={getIconSrc(room.icon)} 
               alt={room.name} 
-              className="w-20 h-20 mb-2 transition-all duration-300 group-hover:brightness-0 group-hover:invert" 
+              className="w-20 h-20 transition-all duration-300 group-hover:brightness-0 group-hover:invert" 
             />
-            <p className="text-base sm:text-lg font-semibold text-gray-800 group-hover:text-white transition-colors duration-300">{room.name}</p>
+            <p className="text-sm sm:text-base font-semibold text-gray-800 group-hover:text-white transition-colors duration-300 text-center whitespace-nowrap">{room.name}</p>
             <p className="text-2xl sm:text-3xl font-bold text-gray-900 group-hover:text-white transition-colors duration-300">{room.count}</p>
           </div>
         ))}
       </div>
-      <div className="col-span-full flex justify-center mt-6">
-        <button className="w-full max-w-sm px-6 py-4 rounded-lg text-base font-semibold flex justify-between items-center border border-black hover:bg-purple-50 transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:border-white hover:text-white">
+      <div className="flex justify-center mt-6">
+        <button className="flex justify-between items-center text-lg font-bold transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:border-white hover:text-white"
+                style={{ 
+                  width: '250px', 
+                  padding: '20px', 
+                  borderRadius: '10px', 
+                  border: '1.5px solid #005C84' 
+                }}>
           <span>View All</span>
-          <span className="text-xl">&#8594;</span>
+          <span className="text-2xl">&#8594;</span>
         </button>
       </div>
     </div>

@@ -208,9 +208,15 @@ const AvailableRoomsContent = () => {
             </div>
           </div>
           <div className="w-full flex justify-center mt-1 px-4 pb-4">
-            <button className="w-full max-w-sm px-4 py-2 rounded-lg text-xs md:text-sm font-semibold flex justify-between items-center border border-black hover:bg-purple-50 transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:border-white hover:text-white">
+            <button className="flex justify-between items-center text-lg font-semibold transition-colors duration-200 hover:scale-y-110 hover:bg-gradient-to-t from-[#3A1F6B]/70 to-[#005C84]/80 hover:border-white hover:text-white"
+                    style={{ 
+                      width: '250px', 
+                      padding: '20px', 
+                      borderRadius: '10px', 
+                      border: '1.5px solid #005C84' 
+                    }}>
               <span>View All</span>
-              <span className="text-lg">&#8594;</span>
+              <span className="text-2xl">&#8594;</span>
             </button>
           </div>
         </div>
