@@ -88,11 +88,11 @@ const AvailableRoomsContent = () => {
               className="min-w-[140px] h-[35px] border border-black flex items-center justify-center gap-2 rounded-md hover:bg-gray-100 transition"
             >
               <Calendar size={16} />
-              <span className="text-xs font-medium">Custom Range</span>
+              <span className="text-xs font-medium">Custom Date</span>
             </button>
             {showCalendar && (
               <div className="absolute top-full right-0 mt-2 z-[9999] bg-white rounded-lg shadow-2xl border">
-                <AdvancedCalendar onClose={() => setShowCalendar(false)} />
+                <AdvancedCalendar mode="pastDisabled" onClose={() => setShowCalendar(false)} />
               </div>
             )}
           </div>
