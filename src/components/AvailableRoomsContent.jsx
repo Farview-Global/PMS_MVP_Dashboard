@@ -219,7 +219,7 @@ const AvailableRoomsContent = () => {
               className={`${styles.buttonWidth} h-[30px] border border-black flex items-center justify-center gap-2 rounded-md hover:bg-gray-100 transition`}
             >
               <Calendar size={14} />
-              <span className="text-[10px] font-medium">Custom Range</span>
+              <span className="text-[10px] font-medium">Custom Date</span>
             </button>
             {showCalendar && (
               <div className="absolute top-full right-0 mt-2 z-[9999] bg-white rounded-lg shadow-2xl border transform scale-75 origin-top-right">

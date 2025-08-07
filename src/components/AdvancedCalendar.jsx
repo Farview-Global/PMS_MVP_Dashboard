@@ -171,11 +171,11 @@ export default function AdvancedCalendar({ onDateSelect, mode = "all" }) {
   };
  
   return (
-    <div className="bg-white shadow-2xl rounded-2xl p-[20px] w-[380px] h-[320px] flex flex-col gap-2">
+    <div className="bg-white shadow-2xl rounded-2xl p-[20px] w-[380px] h-[277px] flex flex-col gap-2">
       {/* Mode indicator - shows current selection mode */}
-      <div className="text-xs text-gray-500 text-center mb-1">
+      {/* <div className="text-xs text-gray-500 text-center mb-1">
         {getModeDescription()}
-      </div>
+      </div> */}
      
       {/* Calendar Header - Month/Year display with navigation buttons */}
       <div className="flex items-center justify-center gap-0 mb-2">

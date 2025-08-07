@@ -20,7 +20,7 @@ const Welcome = () => {
       <div className="w-[35%] flex items-center h-auto rounded-lg border border-black p-1 sm:p-2 md:p-3 lg:p-3 xl:p-4 min-h-[60px] sm:min-h-[70px] md:min-h-[80px] lg:min-h-[85px] xl:min-h-[90px]">
         {/* Vertical QUICK LINKS text */}
         <div className="flex items-center justify-center -rotate-[90deg] mr-1 sm:mr-2 md:mr-3 lg:mr-4">
-          <span className="text-black-600 font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] xl:text-xs whitespace-nowrap">
+          <span className="text-blue-600 font-bold text-[7px] sm:text-[8px] md:text-[9px] lg:text-[10px] xl:text-xs whitespace-nowrap">
             QUICK LINKS
           </span>
         </div>
