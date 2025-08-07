@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
@@ -52,9 +52,21 @@ function formatDateRange(startDate, endDate) {
   }
 }
  
-export default function WeekCalendar({ onDateRangeSelect }) {
+export default function WeekCalendar({ onDateRangeSelect, onClose }) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedWeekRange, setSelectedWeekRange] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    setWindowWidth(window.innerWidth);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
  
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -81,6 +93,11 @@ export default function WeekCalendar({ onDateRangeSelect }) {
     if (onDateRangeSelect) {
       onDateRangeSelect(dateRangeString);
     }
+
+    // Auto-close the calendar after selection
+    if (onClose) {
+      setTimeout(() => onClose(), 300); // Small delay for better UX
+    }
   };
  
   // Check if a date is in the selected week range
@@ -94,29 +111,60 @@ export default function WeekCalendar({ onDateRangeSelect }) {
     return false; // Allow all dates to be selectable
   };
  
+  // Get responsive styles based on screen size
+  const getResponsiveStyles = () => {
+    if (windowWidth < 640) {
+      return {
+        containerClass: "bg-white shadow-2xl rounded-xl p-3 w-[300px] h-[240px] flex flex-col gap-1",
+        headerTextSize: "text-sm",
+        buttonSize: "text-sm",
+        daySize: "text-sm",
+        headerMinWidth: "min-w-[100px]"
+      };
+    } else if (windowWidth < 768) {
+      return {
+        containerClass: "bg-white shadow-2xl rounded-xl p-4 w-[340px] h-[260px] flex flex-col gap-2",
+        headerTextSize: "text-base",
+        buttonSize: "text-base",
+        daySize: "text-sm",
+        headerMinWidth: "min-w-[110px]"
+      };
+    } else {
+      return {
+        containerClass: "bg-white shadow-2xl rounded-2xl p-[20px] w-[380px] h-[277px] flex flex-col gap-2",
+        headerTextSize: "text-lg",
+        buttonSize: "text-md",
+        daySize: "text-md",
+        headerMinWidth: "min-w-[120px]"
+      };
+    }
+  };
+
+  const styles = getResponsiveStyles();
+
   return (
-    <div className="bg-white shadow-2xl rounded-2xl p-[20px] w-[380px] h-[277px] flex flex-col gap-2">
+    <div className={styles.containerClass}>
       {/* Header */}
       <div className="flex items-center justify-center gap-0 mb-2">
-        <button className="text-md font-bold px-0 py-0 m-1" onClick={prevYear}>
+        <button className={`${styles.buttonSize} font-bold px-0 py-0 m-1`} onClick={prevYear}>
         <MdKeyboardDoubleArrowLeft />
         </button>
-        <button className="text-md font-bold px-0 py-0 m-1" onClick={prevMonth}>
+        <button className={`${styles.buttonSize} font-bold px-0 py-0 m-1`} onClick={prevMonth}>
         <MdKeyboardArrowLeft />
         </button>
-        <span className="text-lg min-w-[120px] text-center text-gray-800">
+        <span className={`${styles.headerTextSize} ${styles.headerMinWidth} text-center text-gray-800`}>
           {currentDate.toLocaleString("default", { month: "long" })} {year}
         </span>
-        <button className="text-md font-bold px-0 py-0 m-1" onClick={nextMonth}>
+        <button className={`${styles.buttonSize} font-bold px-0 py-0 m-1`} onClick={nextMonth}>
         <MdKeyboardArrowRight />
         </button>
-        <button className="text-md font-bold px-0 py-0 m-1" onClick={nextYear}>
+        <button className={`${styles.buttonSize} font-bold px-0 py-0 m-1`} onClick={nextYear}>
           <MdKeyboardDoubleArrowRight />
         </button>
       </div>
  
       {/* Calendar Grid */}
-      <div className="grid grid-cols-7 text-md gap-1 text-center flex-1">
+      <div className={`grid grid-cols-7 ${styles.daySize} gap-1 text-center flex-1`}>
         {/* Empty cells for alignment */}
         {Array(startDay).fill(null).map((_, i) => (
           <div key={"empty" + i}></div>

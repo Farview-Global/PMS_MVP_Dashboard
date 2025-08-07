@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import DatePicker from "react-datepicker";
 import { FaRegCalendarAlt } from "react-icons/fa";
@@ -34,6 +34,20 @@ const ProjectionsContent = () => {
   const [startDate, endDate] = dateRange;
   const datePickerRef = useRef(null);
   const [showCalendar, setShowCalendar] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    
+    // Set initial width
+    setWindowWidth(window.innerWidth);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleCustomDateClick = () => {
     setShowCalendar((prev) => !prev);
@@ -93,9 +107,11 @@ const ProjectionsContent = () => {
         },
         titleFont: {
           family: "Segoe UI Variable, Segoe UI",
+          size: windowWidth < 768 ? 12 : 16,
         },
         bodyFont: {
           family: "Segoe UI Variable, Segoe UI",
+          size: windowWidth < 768 ? 12 : 16,
         },
       },
     },
@@ -108,18 +124,20 @@ const ProjectionsContent = () => {
               ? `${value}%`
               : `$${value}`,
           font: {
-            size: 16,
+            size: windowWidth < 768 ? 12 : 16,
             family: "Segoe UI Variable, Segoe UI, system-ui, sans-serif",
           },
-          padding: 20,
+          padding: windowWidth < 768 ? 15 : 20,
         },
       },
       x: {
         ticks: {
           font: {
-            size: 12,
+            size: windowWidth < 768 ? 10 : 12,
             family: "Segoe UI Variable, Segoe UI, system-ui, sans-serif",
           },
+          maxRotation: windowWidth < 640 ? 45 : 0,
+          minRotation: windowWidth < 640 ? 45 : 0,
         },
       },
     },
@@ -128,15 +146,30 @@ const ProjectionsContent = () => {
   return (
     <div className="w-full h-auto bg-white border border-gray-200 rounded-md p-2 mt-4 shadow-xl overflow-hidden">
       <div className="flex flex-col md:flex-row justify-between items-center w-full px-2 md:px-4 py-2 gap-2">
-        <div className="text-lg md:text-xl font-bold text-gray-800 text-center md:text-left">
+        <div className={clsx(
+          "font-bold text-gray-800 text-center md:text-left",
+          windowWidth < 640 ? "text-sm" :
+          windowWidth < 768 ? "text-base" :
+          windowWidth < 1024 ? "text-lg" : "text-xl"
+        )}>
           Total Revenue
           {selectedMetric && selectedMetric !== "occupancyPercentage" && (
-            <span className="text-green-600 text-xl md:text-2xl ml-2 font-semibold">
+            <span className={clsx(
+              "text-green-600 ml-2 font-semibold",
+              windowWidth < 640 ? "text-base" :
+              windowWidth < 768 ? "text-lg" :
+              windowWidth < 1024 ? "text-xl" : "text-2xl"
+            )}>
               ${dummyData[selectedMetric][6].toFixed(2)}
             </span>
           )}
           {selectedMetric === "occupancyPercentage" && (
-            <span className="text-blue-600 text-xl md:text-2xl ml-2 font-semibold">
+            <span className={clsx(
+              "text-blue-600 ml-2 font-semibold",
+              windowWidth < 640 ? "text-base" :
+              windowWidth < 768 ? "text-lg" :
+              windowWidth < 1024 ? "text-xl" : "text-2xl"
+            )}>
               {dummyData[selectedMetric][6].toFixed(2)}%
             </span>
           )}
@@ -144,21 +177,39 @@ const ProjectionsContent = () => {
         <div className="relative">
           <button
             onClick={handleCustomDateClick}
-            className="w-full min-w-[160px] h-[40px] border border-black flex items-center justify-center gap-2 rounded-md hover:bg-gray-100 transition"
+            className={clsx(
+              "w-full border border-black flex items-center justify-center gap-2 rounded-md hover:bg-gray-100 transition",
+              windowWidth < 640 ? "min-w-[100px] h-[28px]" :
+              windowWidth < 768 ? "min-w-[120px] h-[30px]" :
+              windowWidth < 1024 ? "min-w-[130px] h-[32px]" :
+              "min-w-[140px] h-[34px]"
+            )}
           >
-            <Calendar size={18} />
-            <span className="text-sm font-medium">Custom Range</span>
+            <Calendar size={windowWidth < 640 ? 12 : windowWidth < 768 ? 14 : 16} />
+            <span className={clsx(
+              "font-medium",
+              windowWidth < 640 ? "text-[10px]" :
+              windowWidth < 768 ? "text-[11px]" : "text-xs"
+            )}>
+              Custom Range
+            </span>
           </button>
           {showCalendar && (
-            <div className="absolute top-full right-0 mt-2 z-50">
-              <WeekCalendar onClose={() => setShowCalendar(false)} />
+            <div className="absolute top-full right-0 mt-2 z-50 transform scale-75 origin-top-right">
+              <WeekCalendar 
+                onClose={() => setShowCalendar(false)}
+                onDateRangeSelect={(dateRange) => {
+                  console.log('Selected date range:', dateRange);
+                  // You can add additional logic here to handle the selected date range
+                }}
+              />
             </div>
           )}
         </div>
       </div>
       <div className="flex flex-col md:flex-row items-start justify-between p-2 mt-2 gap-4">
-        <div className="relative flex-1 w-full h-[250px] md:h-[300px]">
-          <Line data={data} options={options} />
+        <div className="relative flex-1 w-full max-w-[95%] mx-auto h-[130px] sm:h-[160px] md:h-[200px] lg:h-[230px] xl:h-[260px]">
+          <Line key={windowWidth} data={data} options={options} />
         </div>
         <div className="w-full md:w-auto p-2 flex-shrink-0">
           <div className="flex flex-row flex-wrap justify-center md:flex-col md:items-start gap-x-4 gap-y-2 md:gap-y-4 pt-2">
@@ -171,7 +222,11 @@ const ProjectionsContent = () => {
                 className="flex items-center space-x-2 cursor-pointer group"
               >
                 <div
-                  className="w-3 h-3 rounded-full transition"
+                  className={clsx(
+                    "rounded-full transition",
+                    windowWidth < 640 ? "w-2 h-2" :
+                    windowWidth < 768 ? "w-3 h-3" : "w-3 h-3"
+                  )}
                   style={{
                     backgroundColor: chartColors[key],
                     opacity:
@@ -180,7 +235,10 @@ const ProjectionsContent = () => {
                 />
                 <span
                   className={clsx(
-                    "text-sm md:text-base font-semibold transition",
+                    "font-semibold transition",
+                    windowWidth < 640 ? "text-xs" :
+                    windowWidth < 768 ? "text-sm" :
+                    windowWidth < 1024 ? "text-sm" : "text-base",
                     selectedMetric === key || selectedMetric === null
                       ? "text-gray-800"
                       : "text-gray-400"
